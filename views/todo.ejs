@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+    <title>
+        <%= locals.title%>
+    </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="responsive.css">
+
+    <!-- this is the main stylesheet -->
+    <link rel="stylesheet" href="scrpit.js" type="text/Javascript">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <!-- this is the heading -->
+    <div id="container">
+        <h1 id=" heading">TODO APP</h1>
+
+<!-- form for taking input from the user starts here -->
+
+        <form action="/" method="post">
+
+            <!-- description input from user -->
+
+            <div class="row ms-0 form-group" id="description">
+
+                <div class="row ms-2">Description</div>
+
+
+                <input class="form-control row mt-2 mb-1" name="description" type="text" id="description_input" style="font-size: medium;" placeholder=" What is the task ">
+
+
+            </div>
+
+<!-- category and date input from the user -->
+
+             <div class="row ms-0 mt-5 " id="category_date">
+
+                <div class="col-6 " style="border-right: 1px solid rgb(49, 48, 48); ">
+                    <div class="row ms-2 ">Category</div>
+
+                    <div class="row ms-2 mb-2 mt-2 justify-content-evenly">
+
+                             <!-- <input name="category" type="text" style="color: red;" placeholder="enter category"></input> -->
+                             <select style="color: rgb(0, 0, 0); width: auto; background-color: rgb(149, 151, 151);" name="category" id="drop-down" required> 
+                                <option value="">Choose a category</option>
+                                 <option value="Personal">Personal</option>
+                                 <option value="Work">Work</option>
+                                 <option value="School">School</option>
+                                 <option value="Cleaning">Cleaning</option>
+                                 <option value="Other">Other</option>
+                            </select>
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row ms-2 ">Due Date</div>
+
+                     <div class="row ms-2 mb-2 mt-2 justify-content-evenly"> 
+
+
+                        <div id="date-box" style="max-width: 200px; width: auto;" >
+                            
+                            <input id="date-input" style="color: rgb(10, 7, 7); background-color: rgb(167, 162, 162);" type="date" name="date">
+                        </div>
+
+
+                     </div> 
+
+
+                </div> 
+            </div>
+
+
+            <!-- submit button to submit all the information given by th user in this form -->
+ 
+            <button type="submit" class="btn btn-success mt-5" id="buttons"><i class="far fa-plus-square me-2"> Add</i></button>
+
+
+        </form>
+
+
+      <form action="/delete-task/" method="post">
+
+        <!-- delete button to delete tasks -->
+                
+                <button type="submit" class="btn btn-success mt-2" style="background-color: rgb(214, 77, 77);" id="buttons"><i class="far fa-plus-square me-2"> Delete</i></button>
+            
+          <div class="d-flex flex-wrap justify-content-evenly mt-3 " id="cards_container">
+                
+            <%for(let i of newDescription) { %>
+
+                <!-- card layout -->
+                        <div class="card mb-3 " style="width: 18rem; height: 80%;">
+
+                            <div class="form-check ms-1 ">
+                                <input class="form-check-input " type="checkbox" name="<%= i.id %>" id="flexCheckDefault">
+                                <label class="form-check-label " for="flexCheckDefault">
+                                                                                         </label>
+                            </div>
+
+                            <div class="card-header bg-transparent border-success ">
+                                <%= i.category %>
+                            </div>
+
+                            <div class="card-body text-success ">
+                                <h5 class="card-title ">
+                                    description
+                                </h5>
+                                <p class="card-text ">
+                                    
+                                    <%= i.description %>
+                                   
+                                    
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent border-success " style="font-size: 70%; color: rgb(180, 177, 177);"><%= i.date %></div>
+                        </div>
+                    
+
+                    <% } %>
+              </div>
+       </form>
+                       
+
+      
+        <script type="text/javascript " src="/public/scrpit.js ">
+        </script>
+        <!-- <script type="text/javascript " src="Scripts/jquery-2.1.1.min.js "></script>
+        <script type="text/javascript " src="Scripts/bootstrap.min.js "></script> -->
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js " integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ " crossorigin="anonymous "></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js " integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN " crossorigin="anonymous "></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js " integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/ " crossorigin="anonymous "></script>
+    </div>
+</body>
+
+</html>
